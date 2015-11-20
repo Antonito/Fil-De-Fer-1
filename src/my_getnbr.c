@@ -5,8 +5,10 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sun Oct 25 02:28:33 2015 Antoine Baché
-** Last update Wed Nov 18 23:24:28 2015 Antoine Baché
+** Last update Fri Nov 20 06:49:57 2015 Antoine Baché
 */
+
+#include "../include/my.h"
 
 int	my_strlen_bis(char *str)
 {
