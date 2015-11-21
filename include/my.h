@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 13:48:55 2015 Antoine Baché
-** Last update Sat Nov 21 17:43:02 2015 Antoine Baché
+** Last update Sat Nov 21 18:02:41 2015 Antoine Baché
 */
 
 #ifndef MY_H_
@@ -33,7 +33,7 @@ typedef struct		s_position
 }			t_position;
 
 t_bunny_response	my_loop(void *);
-void				prepare_my_pos(t_bunny_position *, int);
+void			prepare_my_pos(t_bunny_position *, int);
 int			my_strlen(const char *);
 void			my_putchar_err(char);
 void			my_putchar(char);
