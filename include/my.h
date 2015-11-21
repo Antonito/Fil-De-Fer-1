@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 13:48:55 2015 Antoine Baché
-** Last update Sat Nov 21 18:02:41 2015 Antoine Baché
+** Last update Sat Nov 21 19:11:06 2015 Antoine Baché
 */
 
 #ifndef MY_H_
@@ -32,6 +32,7 @@ typedef struct		s_position
   t_bunny_key		key;
 }			t_position;
 
+int			check_file(t_position *, t_bunny_ini *);
 t_bunny_response	my_loop(void *);
 void			prepare_my_pos(t_bunny_position *, int);
 int			my_strlen(const char *);
@@ -40,7 +41,7 @@ void			my_putchar(char);
 void			my_putstr(char *);
 void			my_putstr_err(char *);
 int			my_setline(t_bunny_pixelarray *, t_position *, t_color *);
-int			my_strcmp(char *, char *);
+int			my_strcmp(const char *, const char *);
 void			tekllproject(t_bunny_position *, int x, int y, int z);
 void			tekline(t_bunny_pixelarray *,
 				t_bunny_position *pos, t_color *);

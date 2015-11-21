@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Wed Nov 18 23:45:29 2015 Antoine Baché
-** Last update Sat Nov 21 17:04:15 2015 Antoine Baché
+** Last update Sat Nov 21 18:28:29 2015 Antoine Baché
 */
 
 #include "../include/my.h"
@@ -24,7 +24,7 @@ void	set_posg(t_position *data, int *tab)
       data->tmp2[0].x = data->tmp1[0].x;
       data->tmp2[0].y = data->tmp1[0].y;
       data->tmp2[1].x = data->posg[tab[0] + 6].x +
-	(tab[3] / 2 ) + STEPX * tab[1] - STEPX;
+	(tab[3] / 2) + STEPX * tab[1] - STEPX;
       data->tmp2[1].y = data->posg[tab[0] + 6].y *
 	(STEPY) / 3 + ((tab[2] + 2 * STEPY) / 2);
     }
@@ -43,7 +43,7 @@ void	set_pos(t_position *data, int *tab)
       data->tmp2[0].x = data->tmp1[0].x;
       data->tmp2[0].y = data->tmp1[0].y;
       data->tmp2[1].x = data->pos[tab[0] + 6].x +
-	(tab[3] / 2 ) + STEPX * tab[1] - STEPX;
+	(tab[3] / 2) + STEPX * tab[1] - STEPX;
       data->tmp2[1].y = data->pos[tab[0] + 6].y *
 	(STEPY) / 3 + ((tab[2] + 2 * STEPY) / 2);
     }

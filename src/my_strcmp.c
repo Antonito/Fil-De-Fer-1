@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Wed Nov 18 20:56:26 2015 Antoine Baché
-** Last update Wed Nov 18 23:03:57 2015 Antoine Baché
+** Last update Sat Nov 21 19:19:31 2015 Antoine Baché
 */
 
 int	my_strlen(const char *str)
@@ -21,7 +21,7 @@ int	my_strlen(const char *str)
   return (i);
 }
 
-int	my_strcmp(char *s1, char *s2)
+int	my_strcmp(const char *s1, const char *s2)
 {
   int	i;
   int	diff;
@@ -30,12 +30,12 @@ int	my_strcmp(char *s1, char *s2)
   i = 0;
   diff = 0;
   j = my_strlen(s1);
-  if (j < my_strlen(s1))
+  if (j < my_strlen(s2))
     j = my_strlen(s2);
-  while (i < j + 1 && !j)
+  while (i < j + 1)
     {
       if (s1[i] != s2[i])
-	j = s1[i] - s2[i];
+	diff = s1[i] - s2[i];
       ++i;
     }
   return (diff);

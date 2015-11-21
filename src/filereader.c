@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 14:50:25 2015 Antoine Baché
-** Last update Sat Nov 21 14:56:36 2015 Antoine Baché
+** Last update Sat Nov 21 19:10:02 2015 Antoine Baché
 */
 
 #include "../include/my.h"
@@ -41,7 +41,7 @@ int	filereader(t_position *position, t_bunny_ini *file)
     my_getnbr((char *)bunny_ini_get_field(file, "forme1", "width", 0));
   position->height =
     my_getnbr((char *)bunny_ini_get_field(file, "forme1", "height", 0));
-  if ((position->pos =bunny_malloc(sizeof(t_bunny_position) *
+  if ((position->pos = bunny_malloc(sizeof(t_bunny_position) *
 				   ((position->width *
 				     position->height)))) == NULL)
     return (1);
@@ -51,5 +51,24 @@ int	filereader(t_position *position, t_bunny_ini *file)
       tekllproject(&position->pos[i], i%position->width, i/position->height, z);
       ++i;
     }
+  return (0);
+}
+
+int	check_file(t_position *position, t_bunny_ini *file)
+{
+  if (bunny_ini_get_field(file, "forme1", "width", 0) == NULL)
+    {
+      my_putstr_err("Incorrect name, must be [forme1]\n");
+      return (1);
+    }
+  else if (my_strcmp(bunny_ini_get_field(file, "forme1", "type", 0), "fdf1") != 0)
+    {
+      my_putstr_err("Incorrect type, must be fdf1\n");
+      return (1);
+    }
+  else if (filereader(position, file) == 1)
+    return (1);
+  else if (get_ground(position, file) == 1)
+    return (1);
   return (0);
 }

@@ -5,15 +5,19 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 13:55:54 2015 Antoine Baché
-** Last update Sat Nov 21 17:50:07 2015 Antoine Baché
+** Last update Sat Nov 21 18:35:24 2015 Antoine Baché
 */
 
 #include "../include/my.h"
 
-void	free_all(t_bunny_position *pos, t_color *color)
+void	free_all(t_position *pos)
 {
+  bunny_free(pos->color);
+  bunny_free(pos->pos);
+  bunny_free(pos->posg);
+  bunny_free(pos->tmp1);
+  bunny_free(pos->tmp2);
   bunny_free(pos);
-  bunny_free(color);
 }
 
 int	my_display(t_bunny_pixelarray *array, t_position *position,
@@ -21,9 +25,7 @@ int	my_display(t_bunny_pixelarray *array, t_position *position,
 {
   my_square(array, color);
   color->full = 6250335;
-  if (filereader(position, file) == 1)
-    return (1);
-  if (get_ground(position, file) == 1)
+  if (check_file(position, file) == 1)
     return (1);
   if ((my_setline(array, position, color) == 1))
     return (1);
@@ -81,6 +83,6 @@ int			main(int ac, char **av)
   bunny_delete_clipable(&position->pix->clipable);
   bunny_stop(position->screen);
   bunny_delete_ini(position->file);
-  /*free_all(pos, color);*/
+  free_all(position);
   return (0);
 }
