@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 13:48:55 2015 Antoine Baché
-** Last update Sat Nov 21 16:24:44 2015 Antoine Baché
+** Last update Sat Nov 21 17:43:02 2015 Antoine Baché
 */
 
 #ifndef MY_H_
@@ -29,6 +29,7 @@ typedef struct		s_position
   t_bunny_ini		*file;
   t_bunny_window	*screen;
   t_color		*color;
+  t_bunny_key		key;
 }			t_position;
 
 t_bunny_response	my_loop(void *);

@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 13:55:54 2015 Antoine Baché
-** Last update Sat Nov 21 17:03:19 2015 Antoine Baché
+** Last update Sat Nov 21 17:50:07 2015 Antoine Baché
 */
 
 #include "../include/my.h"
@@ -37,6 +37,7 @@ t_bunny_response	my_loop(void *position)
 		 ((t_position *)position)->file,
 		 ((t_position *)position)->color) == 1)
     return (-1);
+  bunny_set_key_response(((t_position *)position)->key);
   bunny_blit(&((t_position *)position)->screen->buffer,
 	     &((t_position *)position)->pix->clipable, NULL);
   bunny_display(((t_position *)position)->screen); 
@@ -65,12 +66,12 @@ int			main(int ac, char **av)
   t_position		*position;
   t_bunny_loop		loop;
 
-
   if ((position = bunny_malloc(sizeof(t_position))) == NULL)
     return (1);
   if (load_map(position, ac, av) == 1)
     return (1);
   loop = &my_loop;
+  position->key = &my_escape;
   position->pix = bunny_new_pixelarray(SIZE_X, SIZE_Y);
   position->screen = bunny_start(SIZE_X, SIZE_Y, 0, "Fil de fer 1");
   if ((position->color = bunny_malloc(sizeof(t_color))) == NULL)
