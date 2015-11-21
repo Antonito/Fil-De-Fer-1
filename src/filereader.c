@@ -5,31 +5,51 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 14:50:25 2015 Antoine Baché
-** Last update Fri Nov 20 06:54:53 2015 Antoine Baché
+** Last update Sat Nov 21 14:56:36 2015 Antoine Baché
 */
 
 #include "../include/my.h"
 
-t_bunny_position	*filereader(t_bunny_position *pos)
+int	get_ground(t_position *position, t_bunny_ini *file)
 {
-  t_bunny_ini		*file;
-  int			height;
-  int			width;
-  int			i;
-  int			z;
+  int	i;
 
   i = 0;
-  file = bunny_load_ini("file.ini");
-  width = my_getnbr((char *)bunny_ini_get_field(file, "forme1", "width", 0));
-  height = my_getnbr((char *)bunny_ini_get_field(file, "forme1", "height", 0));
-  if ((pos = bunny_malloc(sizeof(t_bunny_position) * ((width * height)))) == NULL)
-    return (NULL);
-  while (i < width * height)
+  position->width =
+    my_getnbr((char *)bunny_ini_get_field(file, "forme1", "width", 0));
+  position->height =
+    my_getnbr((char *)bunny_ini_get_field(file, "forme1", "height", 0));
+  if ((position->posg =bunny_malloc(sizeof(t_bunny_position) *
+				   ((position->width *
+				     position->height)))) == NULL)
+    return (1);
+  while (i < position->width * position->height)
     {
-      z = my_getnbr((char *)bunny_ini_get_field(file, "forme1", "data", i));
-      tekllproject(&pos[i], i%width, i/height, z);
+      tekllproject(&position->posg[i], i%position->width, i/position->height, 0);
       ++i;
     }
-  bunny_delete_ini(file);
-  return (pos);
+  return (0);
+}
+
+int	filereader(t_position *position, t_bunny_ini *file)
+{
+  int	i;
+  int	z;
+
+  i = 0;
+  position->width =
+    my_getnbr((char *)bunny_ini_get_field(file, "forme1", "width", 0));
+  position->height =
+    my_getnbr((char *)bunny_ini_get_field(file, "forme1", "height", 0));
+  if ((position->pos =bunny_malloc(sizeof(t_bunny_position) *
+				   ((position->width *
+				     position->height)))) == NULL)
+    return (1);
+  while (i < position->width * position->height)
+    {
+      z = my_getnbr((char *)bunny_ini_get_field(file, "forme1", "data", i));
+      tekllproject(&position->pos[i], i%position->width, i/position->height, z);
+      ++i;
+    }
+  return (0);
 }

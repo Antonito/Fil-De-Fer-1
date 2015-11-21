@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ## 
 ## Started on  Fri Nov  6 13:26:38 2015 Antoine Baché
-## Last update Fri Nov 20 06:51:48 2015 Antoine Baché
+## Last update Sat Nov 21 15:19:28 2015 Antoine Baché
 ##
 
 SRC=	src/main.c \
@@ -19,6 +19,7 @@ SRC=	src/main.c \
 	src/my_putstr.c \
 	src/my_strcmp.c \
 	src/my_setline.c \
+	src/vertical_lines.c \
 	src/my_escape.c
 
 NAME=	fdf1

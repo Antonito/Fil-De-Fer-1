@@ -5,87 +5,123 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Wed Nov 18 23:45:29 2015 Antoine Baché
-** Last update Fri Nov 20 06:52:26 2015 Antoine Baché
+** Last update Sat Nov 21 15:45:10 2015 Antoine Baché
 */
 
 #include "../include/my.h"
 
-void	set_pos(t_bunny_position *tmp, t_bunny_position *tmp2, t_bunny_position *pos, int *tab)
+void	set_posg(t_position *data, int *tab)
 {
-  t_bunny_ini	*file;
-  int		width;
-  int		height;
-
-  file = bunny_load_ini("file.ini");
-  width = my_getnbr((char *)bunny_ini_get_field(file, "forme1", "width", 0));
-  height = my_getnbr((char *)bunny_ini_get_field(file, "forme1", "height", 0));
-  bunny_delete_ini(file);
-  tmp[0].x = pos[tab[0]].x + ((tab[3] - STEP) / 2) + STEP * tab[1];
-  tmp[0].y = pos[tab[0]].y * STEP / 3 + ((tab[2] + STEP) / 2);
-  tmp[1].x = pos[tab[0] + 1].x + ((tab[3] - STEP) / 2) + STEP * (tab[1] + 1);
-  tmp[1].y = pos[tab[0] + 1].y * STEP / 3 + ((tab[2] + STEP) / 2);
-  if (tab[0] <  height * width - 6)
+  data->tmp1[0].x = data->posg[tab[0]].x +
+    ((tab[3] - STEPX) / 2) + STEPX * tab[1];
+  data->tmp1[0].y = data->posg[tab[0]].y * STEPY / 3 + ((tab[2] + STEPY) / 2);
+  data->tmp1[1].x = data->posg[tab[0] + 1].x +
+    ((tab[3] - STEPX) / 2) + STEPX * (tab[1] + 1);
+  data->tmp1[1].y = data->posg[tab[0] + 1].y *
+    STEPY / 3 + ((tab[2] + STEPY) / 2);
+  if (tab[0] <  data->height * data->width - 6)
     {
-      tmp2[0].x = tmp[0].x;
-      tmp2[0].y = tmp[0].y;
-      tmp2[1].x = pos[tab[0 + 6]].x + (tab[3] / 2 ) + STEP * (tab[1]) - STEP;
-      tmp2[1].y = pos[tab[0] + 6].y * (STEP) / 3 + ((tab[2] + 2 * STEP) / 2);
+      data->tmp2[0].x = data->tmp1[0].x;
+      data->tmp2[0].y = data->tmp1[0].y;
+      data->tmp2[1].x = data->posg[tab[0] + 6].x +
+	(tab[3] / 2 ) + STEPX * tab[1] - STEPX;
+      data->tmp2[1].y = data->posg[tab[0] + 6].y *
+	(STEPY) / 3 + ((tab[2] + 2 * STEPY) / 2);
     }
 }
 
-int			my_setline(t_bunny_pixelarray *array, t_bunny_position *pos, t_color *color)
+void	set_pos(t_position *data, int *tab)
 {
-  t_bunny_ini		*file;
-  t_bunny_position	*tmp;
-  t_bunny_position	*tmp2;
-  int			width;
-  int			height;
+  data->tmp1[0].x = data->pos[tab[0]].x +
+    ((tab[3] - STEPX) / 2) + STEPX * tab[1];
+  data->tmp1[0].y = data->pos[tab[0]].y * STEPY / 3 + ((tab[2] + STEPY) / 2);
+  data->tmp1[1].x = data->pos[tab[0] + 1].x +
+    ((tab[3] - STEPX) / 2) + STEPX * (tab[1] + 1);
+  data->tmp1[1].y = data->pos[tab[0] + 1].y * STEPY / 3 + ((tab[2] + STEPY) / 2);
+  if (tab[0] <  data->height * data->width - 6)
+    {
+      data->tmp2[0].x = data->tmp1[0].x;
+      data->tmp2[0].y = data->tmp1[0].y;
+      data->tmp2[1].x = data->pos[tab[0] + 6].x +
+	(tab[3] / 2 ) + STEPX * tab[1] - STEPX;
+      data->tmp2[1].y = data->pos[tab[0] + 6].y *
+	(STEPY) / 3 + ((tab[2] + 2 * STEPY) / 2);
+    }
+}
+
+int			my_setline(t_bunny_pixelarray *array, t_position *position, t_color *color)
+{
   int			*tab;
 
   if ((tab = malloc(sizeof(int) * 5)) == NULL)
     return (1);
-  if ((tmp = bunny_malloc(sizeof(t_bunny_pixelarray) * 2)) == NULL)
+  if ((position->tmp1 = bunny_malloc(sizeof(t_bunny_pixelarray) * 2)) == NULL)
     return (1);
-  if ((tmp2 = bunny_malloc(sizeof(t_bunny_pixelarray) * 2)) == NULL)
+  if ((position->tmp2 = bunny_malloc(sizeof(t_bunny_pixelarray) * 2)) == NULL)
     return (1);
   tab[0] = 0;
   tab[2] = SIZE_X;
   tab[3] = SIZE_X;
-  file = bunny_load_ini("file.ini");
-  width = my_getnbr((char *)bunny_ini_get_field(file, "forme1", "width", 0));
-  height = my_getnbr((char *)bunny_ini_get_field(file, "forme1", "height", 0));
-  while (tab[0] < width * height - 1)
+  draw_ground(array, position, color, tab);
+  tab[0] = 0;
+  tab[2] = SIZE_X;
+  tab[3] = SIZE_X;
+  color->full = 9560692;
+  draw_vertical(array, position, color, tab);
+  tab[0] = 0;
+  tab[2] = SIZE_X;
+  tab[3] = SIZE_X;
+  color->full = 16777215;
+  draw_shape(array, position, color, tab);
+  return (0);
+}
+
+void	draw_ground(t_bunny_pixelarray *pix, t_position *position, t_color *color, int *tab)
+{
+  while (tab[0] < position->width * position->height - 1)
     {
       tab[1] = 0;
-      while (tab[1] < width - 1)
+      while (tab[1] < position->width - 1)
 	{
-	  color->full = 16777215;
-	  set_pos(tmp, tmp2, pos, tab);
-	  printf("tmp[0].x = %d tmp[0].y = %d\n", tmp[0].x, tmp[0].y);
-	  printf("tmp[1].x = %d tmp[1].y = %d\n", tmp[1].x, tmp[1].y);
-	  printf("tmp2[0].x = %d tmp2[0].y = %d\n", tmp2[0].x, tmp2[0].y);
-	  printf("tmp2[1].x = %d tmp2[1].y = %d\n", tmp2[1].x, tmp2[1].y);
-	  printf("tab[0] = %d calc = %d\n", tab[0], (height - 1) * width);
-	  tekline(array, tmp, color);
-	  color->full = 3456788;
-	  if (tab[0] < (height - 1) * width)
-	    tekline(array, tmp2, color);
+	  set_posg(position, tab);
+	  tekline(pix, position->tmp1, color);
+	  if (tab[0] < (position->height - 1) * position->width)
+	    tekline(pix, position->tmp2, color);
 	  tab[1] += 1;
 	  tab[0] += 1;
-	  printf("j = %d\n", tab[1]);
 	}
       if (tab[1] != 0)
 	{
-	  set_pos(tmp, tmp2, pos, tab);
-	  tekline(array, tmp2, color);
+	  set_posg(position, tab);
+	  tekline(pix, position->tmp2, color);
 	}
-      printf("i = %d\n", tab[0]);
-      tab[2] += STEP;
-      tab[3] -= STEP;
+      tab[2] += STEPY;
+      tab[3] -= STEPX;
       tab[0] += 1;
     }
-  bunny_delete_ini(file);
-  bunny_free(tmp);
-  bunny_free(tmp2);
-  return (0);
+}
+
+void	draw_shape(t_bunny_pixelarray *pix, t_position *position, t_color *color, int *tab)
+{
+  while (tab[0] < position->width * position->height - 1)
+    {
+      tab[1] = 0;
+      while (tab[1] < position->width - 1)
+	{
+	  set_pos(position, tab);
+	  tekline(pix, position->tmp1, color);
+	  if (tab[0] < (position->height - 1) * position->width)
+	    tekline(pix, position->tmp2, color);
+	  tab[1] += 1;
+	  tab[0] += 1;
+	}
+      if (tab[1] != 0)
+	{
+	  set_pos(position, tab);
+	  tekline(pix, position->tmp2, color);
+	}
+      tab[2] += STEPY;
+      tab[3] -= STEPX;
+      tab[0] += 1;
+    }
 }
