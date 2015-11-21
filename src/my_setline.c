@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Wed Nov 18 23:45:29 2015 Antoine Baché
-** Last update Sat Nov 21 15:45:10 2015 Antoine Baché
+** Last update Sat Nov 21 17:04:15 2015 Antoine Baché
 */
 
 #include "../include/my.h"
@@ -76,7 +76,8 @@ int			my_setline(t_bunny_pixelarray *array, t_position *position, t_color *color
   return (0);
 }
 
-void	draw_ground(t_bunny_pixelarray *pix, t_position *position, t_color *color, int *tab)
+void	draw_ground(t_bunny_pixelarray *pix, t_position *position,
+		    t_color *color, int *tab)
 {
   while (tab[0] < position->width * position->height - 1)
     {
@@ -101,7 +102,8 @@ void	draw_ground(t_bunny_pixelarray *pix, t_position *position, t_color *color, 
     }
 }
 
-void	draw_shape(t_bunny_pixelarray *pix, t_position *position, t_color *color, int *tab)
+void	draw_shape(t_bunny_pixelarray *pix, t_position *position,
+		   t_color *color, int *tab)
 {
   while (tab[0] < position->width * position->height - 1)
     {

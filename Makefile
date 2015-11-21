@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ## 
 ## Started on  Fri Nov  6 13:26:38 2015 Antoine Baché
-## Last update Sat Nov 21 15:19:28 2015 Antoine Baché
+## Last update Sat Nov 21 17:05:41 2015 Antoine Baché
 ##
 
 SRC=	src/main.c \
@@ -23,8 +23,6 @@ SRC=	src/main.c \
 	src/my_escape.c
 
 NAME=	fdf1
-
-#CC=	gcc -g
 
 CC=	gcc -W -Wall -ansi -pedantic
 

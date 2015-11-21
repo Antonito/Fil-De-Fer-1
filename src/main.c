@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 13:55:54 2015 Antoine Baché
-** Last update Sat Nov 21 16:52:07 2015 Antoine Baché
+** Last update Sat Nov 21 17:03:19 2015 Antoine Baché
 */
 
 #include "../include/my.h"
@@ -16,7 +16,8 @@ void	free_all(t_bunny_position *pos, t_color *color)
   bunny_free(color);
 }
 
-int	my_display(t_bunny_pixelarray *array, t_position *position, t_bunny_ini *file, t_color *color)
+int	my_display(t_bunny_pixelarray *array, t_position *position,
+		   t_bunny_ini *file, t_color *color)
 {
   my_square(array, color);
   color->full = 6250335;
