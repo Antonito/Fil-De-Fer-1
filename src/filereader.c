@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 14:50:25 2015 Antoine Baché
-** Last update Sat Nov 21 19:10:02 2015 Antoine Baché
+** Last update Sat Nov 21 19:50:54 2015 Antoine Baché
 */
 
 #include "../include/my.h"
@@ -25,7 +25,8 @@ int	get_ground(t_position *position, t_bunny_ini *file)
     return (1);
   while (i < position->width * position->height)
     {
-      tekllproject(&position->posg[i], i%position->width, i/position->height, 0);
+      tekllproject(&position->posg[i], i%position->width,
+		   i/position->height, 0);
       ++i;
     }
   return (0);
@@ -61,7 +62,8 @@ int	check_file(t_position *position, t_bunny_ini *file)
       my_putstr_err("Incorrect name, must be [forme1]\n");
       return (1);
     }
-  else if (my_strcmp(bunny_ini_get_field(file, "forme1", "type", 0), "fdf1") != 0)
+  else if (my_strcmp(bunny_ini_get_field(file, "forme1", "type", 0), "fdf1")
+	   != 0)
     {
       my_putstr_err("Incorrect type, must be fdf1\n");
       return (1);

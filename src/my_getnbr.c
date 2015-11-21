@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sun Oct 25 02:28:33 2015 Antoine Baché
-** Last update Fri Nov 20 06:49:57 2015 Antoine Baché
+** Last update Sat Nov 21 19:35:05 2015 Antoine Baché
 */
 
 #include "../include/my.h"
@@ -44,6 +44,8 @@ int	my_is_neg(char *str)
   int	is_neg;
   int	i;
 
+  if (str == NULL)
+    return (2);
   is_neg = 0;
   i = 0;
   while (str[i] != '\0')
@@ -66,7 +68,8 @@ int		my_getnbr(char *str)
   int		i;
 
   i = 0;
-  is_neg = my_is_neg(str);
+  if ((is_neg = my_is_neg(str)) == 2)
+    return (0);
   size = my_strlen_bis(str);
   pwr = my_power_ten(size);
   total = 0;

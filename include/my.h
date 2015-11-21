@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 13:48:55 2015 Antoine Baché
-** Last update Sat Nov 21 19:11:06 2015 Antoine Baché
+** Last update Sat Nov 21 19:50:14 2015 Antoine Baché
 */
 
 #ifndef MY_H_
@@ -47,7 +47,7 @@ void			tekline(t_bunny_pixelarray *,
 				t_bunny_position *pos, t_color *);
 void			tekpixel(t_bunny_pixelarray *,
 				 t_bunny_position *pos, t_color *);
-void			my_square(t_bunny_pixelarray *, t_color *);
+int			my_square(t_bunny_pixelarray *, t_color *);
 void			my_setpos(t_position *, int);
 void			my_setposg(t_position *, int);
 int			filereader(t_position *, t_bunny_ini *);

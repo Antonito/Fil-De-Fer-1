@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 13:55:54 2015 Antoine Baché
-** Last update Sat Nov 21 18:35:24 2015 Antoine Baché
+** Last update Sat Nov 21 19:49:32 2015 Antoine Baché
 */
 
 #include "../include/my.h"
@@ -23,7 +23,8 @@ void	free_all(t_position *pos)
 int	my_display(t_bunny_pixelarray *array, t_position *position,
 		   t_bunny_ini *file, t_color *color)
 {
-  my_square(array, color);
+  if (my_square(array, color) == 1)
+    return (1);
   color->full = 6250335;
   if (check_file(position, file) == 1)
     return (1);
@@ -42,7 +43,7 @@ t_bunny_response	my_loop(void *position)
   bunny_set_key_response(((t_position *)position)->key);
   bunny_blit(&((t_position *)position)->screen->buffer,
 	     &((t_position *)position)->pix->clipable, NULL);
-  bunny_display(((t_position *)position)->screen); 
+  bunny_display(((t_position *)position)->screen);
   return (GO_ON);
 }
 

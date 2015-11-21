@@ -5,12 +5,12 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Wed Nov 18 10:10:01 2015 Antoine Baché
-** Last update Sat Nov 21 18:27:35 2015 Antoine Baché
+** Last update Sat Nov 21 19:49:58 2015 Antoine Baché
 */
 
 #include "../include/my.h"
 
-void			my_square(t_bunny_pixelarray *pix, t_color *color)
+int			my_square(t_bunny_pixelarray *pix, t_color *color)
 {
   int			i;
   int			j;
@@ -20,7 +20,7 @@ void			my_square(t_bunny_pixelarray *pix, t_color *color)
   i = 0;
   color->full = 0;
   if ((pos = malloc(sizeof(t_bunny_position)*2)) == NULL)
-    return;
+    return (1);
   while (i < 768)
     {
       pos[0].y = i;
@@ -33,4 +33,5 @@ void			my_square(t_bunny_pixelarray *pix, t_color *color)
       j = 0;
       i++;
     }
+  return (0);
 }

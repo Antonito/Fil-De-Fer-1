@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Wed Nov 18 23:45:29 2015 Antoine Baché
-** Last update Sat Nov 21 18:28:29 2015 Antoine Baché
+** Last update Sat Nov 21 19:51:36 2015 Antoine Baché
 */
 
 #include "../include/my.h"
@@ -37,7 +37,8 @@ void	set_pos(t_position *data, int *tab)
   data->tmp1[0].y = data->pos[tab[0]].y * STEPY / 3 + ((tab[2] + STEPY) / 2);
   data->tmp1[1].x = data->pos[tab[0] + 1].x +
     ((tab[3] - STEPX) / 2) + STEPX * (tab[1] + 1);
-  data->tmp1[1].y = data->pos[tab[0] + 1].y * STEPY / 3 + ((tab[2] + STEPY) / 2);
+  data->tmp1[1].y = data->pos[tab[0] + 1].y * STEPY / 3 +
+    ((tab[2] + STEPY) / 2);
   if (tab[0] <  data->height * data->width - 6)
     {
       data->tmp2[0].x = data->tmp1[0].x;
@@ -49,7 +50,8 @@ void	set_pos(t_position *data, int *tab)
     }
 }
 
-int			my_setline(t_bunny_pixelarray *array, t_position *position, t_color *color)
+int			my_setline(t_bunny_pixelarray *array,
+				   t_position *position, t_color *color)
 {
   int			*tab;
 
