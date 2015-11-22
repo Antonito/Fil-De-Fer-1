@@ -5,19 +5,23 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Wed Nov 18 23:45:29 2015 Antoine Baché
-** Last update Sat Nov 21 18:14:08 2015 Antoine Baché
+** Last update Sun Nov 22 01:21:41 2015 Antoine Baché
 */
 
 #include "../include/my.h"
 
 void	set_posv(t_position *data, int *tab)
 {
-  data->tmp1[0].x = data->posg[tab[0]].x +
-    ((tab[3] - STEPX) / 2) + STEPX * tab[1];
-  data->tmp1[0].y = data->posg[tab[0]].y * STEPY / 3 + ((tab[2] + STEPY) / 2);
-  data->tmp1[1].x = data->posg[tab[0]].x +
-    ((tab[3] - STEPX) / 2) + STEPX * tab[1];
-  data->tmp1[1].y= data->pos[tab[0]].y * STEPY / 3 + ((tab[2] + STEPY) / 2);
+  data->tmp1[0].x = (data->posg[tab[0]].x +
+		     ((tab[3] - data->stepx) / 2) +
+		     data->stepx * tab[1]) - 3 *data->stepx;
+  data->tmp1[0].y = data->posg[tab[0]].y * data->stepy / 3 +
+    (2 * (tab[2] + data->stepy) / 5);
+  data->tmp1[1].x = (data->pos[tab[0]].x +
+		     ((tab[3] - data->stepx) / 2) +
+		     data->stepx * tab[1]) - 3 * data->stepx;
+  data->tmp1[1].y = data->pos[tab[0]].y * data->stepy / 3 +
+    (2 * (tab[2] + data->stepy) / 5);
 }
 
 void	draw_vertical(t_bunny_pixelarray *pix, t_position *position,
@@ -38,8 +42,8 @@ void	draw_vertical(t_bunny_pixelarray *pix, t_position *position,
 	  set_posv(position, tab);
 	  tekline(pix, position->tmp1, color);
 	}
-      tab[2] += STEPY;
-      tab[3] -= STEPX;
+      tab[2] += position->stepy;
+      tab[3] -= position->stepx;
       tab[0] += 1;
     }
 }

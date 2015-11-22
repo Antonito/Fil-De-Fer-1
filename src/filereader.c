@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 14:50:25 2015 Antoine Baché
-** Last update Sat Nov 21 19:50:54 2015 Antoine Baché
+** Last update Sun Nov 22 01:26:27 2015 Antoine Baché
 */
 
 #include "../include/my.h"
@@ -19,7 +19,7 @@ int	get_ground(t_position *position, t_bunny_ini *file)
     my_getnbr((char *)bunny_ini_get_field(file, "forme1", "width", 0));
   position->height =
     my_getnbr((char *)bunny_ini_get_field(file, "forme1", "height", 0));
-  if ((position->posg =bunny_malloc(sizeof(t_bunny_position) *
+  if ((position->posg = bunny_malloc(sizeof(t_bunny_position) *
 				   ((position->width *
 				     position->height)))) == NULL)
     return (1);
@@ -48,8 +48,10 @@ int	filereader(t_position *position, t_bunny_ini *file)
     return (1);
   while (i < position->width * position->height)
     {
-      z = my_getnbr((char *)bunny_ini_get_field(file, "forme1", "data", i));
-      tekllproject(&position->pos[i], i%position->width, i/position->height, z);
+      z =
+	my_getnbr((char *)bunny_ini_get_field(file, "forme1", "data", i));
+      tekllproject(&position->pos[i], i%position->width,
+		   i/position->height, z);
       ++i;
     }
   return (0);
@@ -72,5 +74,7 @@ int	check_file(t_position *position, t_bunny_ini *file)
     return (1);
   else if (get_ground(position, file) == 1)
     return (1);
+  position->stepx = SIZE_X / (position->width + 6);
+  position->stepy = position->stepx + SIZE_X / (position->height + 6);
   return (0);
 }

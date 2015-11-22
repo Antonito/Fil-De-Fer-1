@@ -5,57 +5,63 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Wed Nov 18 23:45:29 2015 Antoine Baché
-** Last update Sat Nov 21 19:51:36 2015 Antoine Baché
+** Last update Sun Nov 22 01:22:41 2015 Antoine Baché
 */
 
 #include "../include/my.h"
 
 void	set_posg(t_position *data, int *tab)
 {
-  data->tmp1[0].x = data->posg[tab[0]].x +
-    ((tab[3] - STEPX) / 2) + STEPX * tab[1];
-  data->tmp1[0].y = data->posg[tab[0]].y * STEPY / 3 + ((tab[2] + STEPY) / 2);
+  data->tmp1[0].x = (data->posg[tab[0]].x +
+    ((tab[3] - data->stepx) / 2) + data->stepx * tab[1]) -
+    3 * data->stepx;
+  data->tmp1[0].y = data->posg[tab[0]].y * data->stepy / 3 +
+    (2 * (tab[2] + data->stepy) / 5);
   data->tmp1[1].x = data->posg[tab[0] + 1].x +
-    ((tab[3] - STEPX) / 2) + STEPX * (tab[1] + 1);
+    ((tab[3] - data->stepx) / 2) + data->stepx * (tab[1] + 1) -
+    3 * data->stepx;
   data->tmp1[1].y = data->posg[tab[0] + 1].y *
-    STEPY / 3 + ((tab[2] + STEPY) / 2);
-  if (tab[0] <  data->height * data->width - 6)
+    data->stepy / 3 + (2 * (tab[2] + data->stepy) / 5);
+  if (tab[0] <  data->height * data->width - data->width)
     {
       data->tmp2[0].x = data->tmp1[0].x;
       data->tmp2[0].y = data->tmp1[0].y;
-      data->tmp2[1].x = data->posg[tab[0] + 6].x +
-	(tab[3] / 2) + STEPX * tab[1] - STEPX;
-      data->tmp2[1].y = data->posg[tab[0] + 6].y *
-	(STEPY) / 3 + ((tab[2] + 2 * STEPY) / 2);
+      data->tmp2[1].x = data->pos[tab[0] + data->width].x +
+	(tab[3] / 2) + data->stepx * tab[1] - 4 * data->stepx;
+      data->tmp2[1].y = data->posg[tab[0] + data->width].y *
+	data->stepy / 3 + (2 * (tab[2] + 2 * data->stepy) / 5);
     }
 }
 
 void	set_pos(t_position *data, int *tab)
 {
   data->tmp1[0].x = data->pos[tab[0]].x +
-    ((tab[3] - STEPX) / 2) + STEPX * tab[1];
-  data->tmp1[0].y = data->pos[tab[0]].y * STEPY / 3 + ((tab[2] + STEPY) / 2);
+    ((tab[3] - data->stepx) / 2) + data->stepx * tab[1] -
+    3 * data->stepx;
+  data->tmp1[0].y = data->pos[tab[0]].y * data->stepy / 3 +
+    (2 * (tab[2] + data->stepy) / 5);
   data->tmp1[1].x = data->pos[tab[0] + 1].x +
-    ((tab[3] - STEPX) / 2) + STEPX * (tab[1] + 1);
-  data->tmp1[1].y = data->pos[tab[0] + 1].y * STEPY / 3 +
-    ((tab[2] + STEPY) / 2);
-  if (tab[0] <  data->height * data->width - 6)
+    ((tab[3] - data->stepx) / 2) + data->stepx * (tab[1] + 1) -
+    3 *data->stepx;
+  data->tmp1[1].y = data->pos[tab[0] + 1].y * data->stepy / 3 +
+    (2 * (tab[2] + data->stepy) / 5);
+  if (tab[0] <  data->height * data->width - data->width)
     {
       data->tmp2[0].x = data->tmp1[0].x;
       data->tmp2[0].y = data->tmp1[0].y;
-      data->tmp2[1].x = data->pos[tab[0] + 6].x +
-	(tab[3] / 2) + STEPX * tab[1] - STEPX;
-      data->tmp2[1].y = data->pos[tab[0] + 6].y *
-	(STEPY) / 3 + ((tab[2] + 2 * STEPY) / 2);
+      data->tmp2[1].x = data->pos[tab[0] + data->width].x +
+	(tab[3] / 2) + data->stepx * tab[1] - 4 * data->stepx;
+      data->tmp2[1].y = data->pos[tab[0] + data->width].y *
+	data->stepy / 3 + (2 * (tab[2] + 2 * data->stepy) / 5);
     }
 }
 
-int			my_setline(t_bunny_pixelarray *array,
-				   t_position *position, t_color *color)
+int	my_setline(t_bunny_pixelarray *array, t_position *position,
+		   t_color *color)
 {
-  int			*tab;
+  int	*tab;
 
-  if ((tab = malloc(sizeof(int) * 5)) == NULL)
+  if ((tab = bunny_malloc(sizeof(int) * 5)) == NULL)
     return (1);
   if ((position->tmp1 = bunny_malloc(sizeof(t_bunny_pixelarray) * 2)) == NULL)
     return (1);
@@ -98,8 +104,8 @@ void	draw_ground(t_bunny_pixelarray *pix, t_position *position,
 	  set_posg(position, tab);
 	  tekline(pix, position->tmp2, color);
 	}
-      tab[2] += STEPY;
-      tab[3] -= STEPX;
+      tab[2] += position->stepy;
+      tab[3] -= position->stepx;
       tab[0] += 1;
     }
 }
@@ -124,8 +130,8 @@ void	draw_shape(t_bunny_pixelarray *pix, t_position *position,
 	  set_pos(position, tab);
 	  tekline(pix, position->tmp2, color);
 	}
-      tab[2] += STEPY;
-      tab[3] -= STEPX;
+      tab[2] += position->stepy;
+      tab[3] -= position->stepx;
       tab[0] += 1;
     }
 }

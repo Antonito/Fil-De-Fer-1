@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 13:55:54 2015 Antoine Baché
-** Last update Sat Nov 21 19:49:32 2015 Antoine Baché
+** Last update Sun Nov 22 00:31:53 2015 Antoine Baché
 */
 
 #include "../include/my.h"
@@ -49,7 +49,7 @@ t_bunny_response	my_loop(void *position)
 
 int	load_map(t_position *position, int ac, char **av)
 {
-  if (ac == 1)
+  if (ac != 2)
     {
       my_putstr_err("./fdf1: must take exactly one parameter.\n");
       return (1);
