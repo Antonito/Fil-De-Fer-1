@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 13:48:55 2015 Antoine Baché
-** Last update Sat Nov 21 20:27:24 2015 Antoine Baché
+** Last update Sun Nov 22 05:47:12 2015 Antoine Baché
 */
 
 #ifndef MY_H_
@@ -51,7 +51,7 @@ int			my_square(t_bunny_pixelarray *, t_color *);
 void			my_setpos(t_position *, int);
 void			my_setposg(t_position *, int);
 int			filereader(t_position *, t_bunny_ini *);
-int			get_ground(t_position *, t_bunny_ini *);
+int			get_ground(t_position *);
 int			my_getnbr(char *);
 void			draw_ground(t_bunny_pixelarray *,
 				    t_position *, t_color *, int *);

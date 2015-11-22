@@ -5,21 +5,19 @@
 ** Login   <bache_a@epitech.net>
 ** 
 ** Started on  Sat Nov 14 14:50:25 2015 Antoine Baché
-** Last update Sun Nov 22 03:34:40 2015 Antoine Baché
+** Last update Sun Nov 22 17:24:15 2015 Antoine Baché
 */
 
 #include "../include/my.h"
 
-int	get_ground(t_position *position, t_bunny_ini *file)
+int	get_ground(t_position *position)
 {
   int	i;
 
   i = 0;
-  position->width =
-    my_getnbr((char *)bunny_ini_get_field(file, "forme1", "width", 0));
-  position->height =
-    my_getnbr((char *)bunny_ini_get_field(file, "forme1", "height", 0));
-  if ((position->posg = bunny_malloc(sizeof(t_bunny_position) *
+  if (position->width == 0 || position->height == 0)
+    return (1);
+  else if ((position->posg = bunny_malloc(sizeof(t_bunny_position) *
 				   ((position->width *
 				     position->height)))) == NULL)
     return (1);
@@ -42,7 +40,9 @@ int	filereader(t_position *position, t_bunny_ini *file)
     my_getnbr((char *)bunny_ini_get_field(file, "forme1", "width", 0));
   position->height =
     my_getnbr((char *)bunny_ini_get_field(file, "forme1", "height", 0));
-  if ((position->pos = bunny_malloc(sizeof(t_bunny_position) *
+  if (position->width == 0 || position->height == 0)
+    return (1);
+  else if ((position->pos = bunny_malloc(sizeof(t_bunny_position) *
 				   ((position->width *
 				     position->height)))) == NULL)
     return (1);
@@ -72,9 +72,9 @@ int	check_file(t_position *position, t_bunny_ini *file)
     }
   else if (filereader(position, file) == 1)
     return (1);
-  else if (get_ground(position, file) == 1)
+  else if (get_ground(position) == 1)
     return (1);
   position->stepx = SIZE_X / (2 * position->width);
-  position->stepy = position->stepx;
+  position->stepy = ((position->height <= 2) ? (SIZE_Y / 4) : position->stepx);
   return (0);
 }
