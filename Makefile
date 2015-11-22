@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ## 
 ## Started on  Fri Nov  6 13:26:38 2015 Antoine Baché
-## Last update Sun Nov 22 17:17:23 2015 Antoine Baché
+## Last update Sun Nov 22 20:56:06 2015 Antoine Baché
 ##
 
 SRC=	src/main.c \
@@ -24,9 +24,7 @@ SRC=	src/main.c \
 
 NAME=	fdf1
 
-CC=	gcc
-
-#CC=	gcc -W -Wall -Werror -ansi -pedantic
+CC=	gcc -W -Wall -Werror -ansi -pedantic
 
 RM=	rm -f
 
