@@ -1,11 +1,11 @@
 ##
 ## Makefile for fdf1 in /home/bache_a/Infographie/gfx_fdf1
-## 
+##
 ## Made by Antoine Baché
 ## Login   <bache_a@epitech.net>
-## 
+##
 ## Started on  Fri Nov  6 13:26:38 2015 Antoine Baché
-## Last update Sun Nov 22 20:56:06 2015 Antoine Baché
+## Last update Sun Mar 13 08:32:05 2016 Antoine Baché
 ##
 
 SRC=	src/main.c \
@@ -29,6 +29,8 @@ CC=	gcc -W -Wall -Werror -ansi -pedantic
 RM=	rm -f
 
 LIB=	-L/usr/local/lib \
+	-L/home/${USER}/.froot/lib      \
+	-I/home/${USER}/.froot/include  \
 	-llapin \
 	-lsfml-audio \
 	-lsfml-graphics \
